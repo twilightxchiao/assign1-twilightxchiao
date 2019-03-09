@@ -61,8 +61,6 @@ void draw() {
   lightX = lightX-2;
   lightX = lightX % 160;
   
-  arc(lightX+5+487,lightY+5,10,10,0,180);
-  rect(lightX+5+487,lightY,30,10);
-  arc(lightX+35+487,lightY+5,10,10,180,360);
+  rect(lightX+499,lightY,30,10,5,5,5,5);
   
 }
