@@ -4,8 +4,7 @@ PImage groundhogImg;
 PImage lifeImg;
 PImage soldierImg;
 PImage robotImg;
-int soldierX;
-int lightX,lightY;
+int soldierX,soldierY,robotX,robotY,lightX,lightY;
 
 
 void setup() {
@@ -17,11 +16,19 @@ void setup() {
   soldierImg = loadImage("img/soldier.png");
   robotImg = loadImage("img/robot.png");
   
-
+  //soldier
+  soldierY = 160+floor(random(4))*80;
+  
+  //robot
+  robotX = 160+floor(random(400));
+  robotY = 160+floor(random(4))*80;
+  
 }
 
 void draw() {
+  //bg
   image(bgImg,0,0);
+  //soil
   image(soilImg,0,160);
   
   //grass
@@ -37,6 +44,7 @@ void draw() {
   fill(253,184,19);
   ellipse(590,50,120,120);
   
+  //groundhog
   image(groundhogImg,280,80);
   
   //life
@@ -44,23 +52,20 @@ void draw() {
   image(lifeImg,80,10);
   image(lifeImg,150,10);
   
-  //soldier
+  //soldoer
   soldierX = soldierX+5;
   soldierX %=640;
-  image(soldierImg,soldierX,320);
+  image(soldierImg,soldierX,soldierY);
   
   //robot
-  image(robotImg,500,160);
+  image(robotImg,robotX,robotY);
   
   //light
   noStroke();
   fill(255,0,0);
-  
-  
-  lightY = 193;
+  lightY = robotY+33;
   lightX = lightX-2;
   lightX = lightX % 160;
-  
-  rect(lightX+499,lightY,30,10,5,5,5,5);
+  rect(lightX+robotX-2,lightY,30,10,5,5,5,5);
   
 }
