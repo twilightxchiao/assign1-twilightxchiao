@@ -4,7 +4,7 @@ PImage groundhogImg;
 PImage lifeImg;
 PImage soldierImg;
 PImage robotImg;
-int soldierX,soldierY,robotX,robotY,lightX,lightY;
+int soldierX,soldierY,robotX,robotY,lightX1,lightX2,lightY;
 
 
 void setup() {
@@ -22,6 +22,10 @@ void setup() {
   //robot
   robotX = 160+floor(random(400));
   robotY = 160+floor(random(4))*80;
+  //light
+  lightX1 = robotX+25; 
+  lightX2 = robotX+25;
+  lightY = robotY+37;
   
 }
 
@@ -54,18 +58,22 @@ void draw() {
   
   //soldoer
   soldierX = soldierX+5;
-  soldierX %=640;
-  image(soldierImg,soldierX,soldierY);
+  soldierX %=640+80;
+  image(soldierImg,soldierX-80,soldierY);
   
   //robot
   image(robotImg,robotX,robotY);
   
   //light
-  noStroke();
-  fill(255,0,0);
-  lightY = robotY+33;
-  lightX = lightX-2;
-  lightX = lightX % 160;
-  rect(lightX+robotX-2,lightY,30,10,5,5,5,5);
-  
+  strokeWeight(10);
+  stroke(255,0,0);
+  line(lightX1,lightY,lightX2,lightY);
+  lightX1-=2; 
+  if(lightX1 <= robotX+25-40){
+    lightX2 = lightX1+40;
+  }
+  if(lightX1 < robotX+25-160){
+    lightX1 = robotX+25;
+    lightX2 = robotX+25;
+  }
 }
